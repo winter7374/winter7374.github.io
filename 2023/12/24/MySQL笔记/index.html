@@ -5,22 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Hexo">
-    <meta name="description" content="学习规划1.专业课
-首先保证自己专业课不会挂科，尽量做到更好
-
-在专业课课余时间学习网安知识
-
-
-2.计算机语言
-在11.20前彻底结束C语言
-
-C语言结束后着手学习python
-
-
-3.网络安全实验室
-通过学习连天教育课程学习CTF
-
-着">
+    <meta name="description" content="1.单表格操作：
+ CREATE DATABASE sql_tutorial;
+ SHOW DATABASES;
+ DROP DATABASE sql_tutorial;
+ #创建表格
+ USE sql_tutorial;
+ CREATE ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -390,7 +381,7 @@ C语言结束后着手学习python
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-11-05
+                    2023-12-24
                 </div>
                 
 
@@ -411,37 +402,309 @@ C语言结束后着手学习python
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="学习规划"><a href="#学习规划" class="headerlink" title="学习规划"></a>学习规划</h1><h2 id="1-专业课"><a href="#1-专业课" class="headerlink" title="1.专业课"></a>1.专业课</h2><ul>
-<li><p>首先保证自己专业课不会挂科，尽量做到更好</p>
-</li>
-<li><p>在专业课课余时间学习网安知识</p>
-</li>
-</ul>
-<h2 id="2-计算机语言"><a href="#2-计算机语言" class="headerlink" title="2.计算机语言"></a>2.计算机语言</h2><ul>
-<li><p><strong>在11.20前彻底结束C语言</strong></p>
-</li>
-<li><p>C语言结束后着手学习python</p>
-</li>
-</ul>
-<h2 id="3-网络安全实验室"><a href="#3-网络安全实验室" class="headerlink" title="3.网络安全实验室"></a>3.网络安全实验室</h2><ul>
-<li><p>通过学习连天教育课程学习CTF</p>
-</li>
-<li><p><strong>着手学习HTML</strong></p>
-</li>
-<li><p><strong>学习了解并掌握web安全知识</strong></p>
-</li>
-<li><p>学习了解渗透知识</p>
-</li>
-</ul>
-<h2 id="4-其他"><a href="#4-其他" class="headerlink" title="4.其他"></a>4.其他</h2><ul>
-<li><p><input disabled="" type="checkbox"> 
-改善博客</p>
-</li>
-<li><p>学习AI绘画</p>
-</li>
-<li><p>保证实验室任务全部完成</p>
-</li>
-</ul>
+                <p>1.单表格操作：</p>
+<p> CREATE DATABASE <code>sql_tutorial</code>;</p>
+<p> SHOW DATABASES;</p>
+<p> DROP DATABASE <code>sql_tutorial</code>;</p>
+<p> #创建表格</p>
+<p> USE <code>sql_tutorial</code>;</p>
+<p> CREATE TABLE <code>student</code>(</p>
+<p> <code>student_id</code> INT PRIMARY KEY,</p>
+<p> <code>name</code> VARCHAR(20),</p>
+<p> <code>major</code> VARCHAR(20)</p>
+<p> );</p>
+<p>DESCRIBE <code>student</code>;</p>
+<p>DROP TABLE <code>student</code>;</p>
+<p>#输入表格中值</p>
+<p>ALTER TABLE <code>student</code> ADD gpa DECIMAL(3,2); #在表格中添加一列gpa，是小数，总共3位数，小数占2位</p>
+<p>ALTER TABLE <code>student</code> DROP COLUMN gpa;</p>
+<p>INSERT INTO <code>student</code> VALUES(1,’小白’,’历史’);</p>
+<p>INSERT INTO <code>student</code> VALUES(2,’小黑’,’历史’);</p>
+<p>INSERT INTO <code>student</code> VALUES(3,’小绿’,NULL);</p>
+<p>SELECT * FROM <code>student</code>; #从全部student表格搜索</p>
+<p>INSERT INTO <code>student</code>(<code>name</code>,<code>major</code>,<code>student_id</code>) VALUES(‘小红’,’英语’,5); #可以自己定义顺序，如果没有写某个属性，就把该行资料的该属性定义为NULL</p>
+<h2 id="constraint-限制、约束，预设值：DEFAULT"><a href="#constraint-限制、约束，预设值：DEFAULT" class="headerlink" title="constraint 限制、约束，预设值：DEFAULT"></a>constraint 限制、约束，预设值：DEFAULT</h2><p>DROP TABLE <code>student</code>;</p>
+<p> CREATE TABLE <code>student</code>(</p>
+<p> <code>student_id</code> INT PRIMARY KEY,</p>
+<p> <code>name</code> VARCHAR(20) NOT NULL, #后面的表示限制，该限制为不能空白</p>
+<p> <code>major</code> VARCHAR(20) UNIQUE #该列值要唯一，把UNIQUE改为 DEFAULT ‘历史’ 表示把major的预设值改为历史，在没有major的输入时，自动表示历史。</p>
+<p> );</p>
+<p>INSERT INTO <code>student</code> VALUES(1,’小白’,’历史’);</p>
+<p>INSERT INTO <code>student</code> VALUES(2,’小黑’,’英语’);</p>
+<p> DESCRIBE <code>student</code>;</p>
+<p> CREATE TABLE <code>student</code>(</p>
+<p> <code>student_id</code> INT PRIMARY KEY,</p>
+<p> <code>name</code> VARCHAR(20) NOT NULL, #后面的表示限制，该限制为不能空白</p>
+<p> <code>major</code> VARCHAR(20) DEFAULT ‘历史’ </p>
+<p> );</p>
+<p> INSERT INTO <code>student</code> (<code>student_id</code>,<code>name</code>) VALUES(2,’小白’);</p>
+<p> DESCRIBE <code>student</code>;</p>
+<p> SELECT * FROM <code>student</code>;</p>
+<p>#AUTO_INCREMENT, #id自动增加，不用在输入时写id</p>
+<p>DROP TABLE <code>student</code>; </p>
+<p> CREATE TABLE <code>student</code>(</p>
+<p> <code>student_id</code> INT AUTO_INCREMENT, #id自动增加，不用在输入时写id</p>
+<p> <code>name</code> VARCHAR(20) NOT NULL, #后面的表示限制，该限制为不能空白</p>
+<p> <code>major</code> VARCHAR(20) DEFAULT ‘历史’ ,</p>
+<p> PRIMARY KEY(<code>student_id</code>)</p>
+<p> );</p>
+<p> INSERT INTO <code>student</code> (<code>major</code>,<code>name</code>) VALUES(‘英语’,’小白’);</p>
+<p> INSERT INTO <code>student</code> (<code>major</code>,<code>name</code>) VALUES(‘英语’,’小黑’);</p>
+<p> DESCRIBE <code>student</code>;</p>
+<p> SELECT * FROM <code>student</code>;</p>
+<h3 id="修改、删除资料"><a href="#修改、删除资料" class="headerlink" title="修改、删除资料"></a>修改、删除资料</h3><p> #修改 UPDATE</p>
+<p> SET SQL_SAFE_UPDATES &#x3D; 0; #关闭预设自动更新</p>
+<p> DROP TABLE student;</p>
+<p> DROP TABLE student;</p>
+<p> CREATE TABLE <code>student</code>(</p>
+<p> <code>student_id</code> INT AUTO_INCREMENT,</p>
+<p> <code>name</code> VARCHAR(20), #后面的表示限制，该限制为不能空白</p>
+<p> <code>major</code> VARCHAR(20),</p>
+<p> <code>score</code> INT,</p>
+<p> PRIMARY KEY(<code>student_id</code>)</p>
+<p> );</p>
+<p> INSERT INTO <code>student</code> (<code>major</code>,<code>name</code>,<code>score</code>) VALUES(‘英语’,’小白’,70);</p>
+<p> INSERT INTO <code>student</code> (<code>major</code>,<code>name</code>,<code>score</code>) VALUES(‘生物’,’小蓝’,72);</p>
+<p> INSERT INTO <code>student</code> (<code>major</code>,<code>name</code>,<code>score</code>) VALUES(‘数学’,’小绿’,76);</p>
+<p> INSERT INTO <code>student</code> (<code>major</code>,<code>name</code>,<code>score</code>) VALUES(‘英语’,’小红’,71);</p>
+<p> SELECT * FROM <code>student</code>;</p>
+<p> UPDATE <code>student</code>  #把英语改成英语文学</p>
+<p> SET <code>major</code> &#x3D; ‘英语文学’</p>
+<p> WHERE <code>major</code> &#x3D; ‘英语’;</p>
+<p> UPDATE <code>student</code>  #把第三个学生的major改为英语文学</p>
+<p> SET <code>major</code> &#x3D; ‘英语文学’</p>
+<p> WHERE <code>student_id</code> &#x3D; 3;</p>
+<p> UPDATE <code>student</code>  #把生物或者数学的改成生数</p>
+<p> SET <code>major</code> &#x3D; ‘生数’</p>
+<p> WHERE <code>major</code> &#x3D; ‘生物’ OR <code>major</code>&#x3D; ‘数学’;</p>
+<p> UPDATE <code>student</code>  #把第三个学生的major改为英语文学,并且同时把名字也改了</p>
+<p> SET <code>major</code> &#x3D; ‘英语文学’,<code>name</code> &#x3D; ‘小灰’</p>
+<p> WHERE <code>student_id</code> &#x3D; 1;</p>
+<p> UPDATE <code>student</code>  #不写条件的话，就会吧所有的major都改变</p>
+<p> SET <code>major</code> &#x3D; ‘英语文学’;</p>
+<p> #删除 DELETE FROM</p>
+<p> DELETE FROM <code>student</code> #把编号为4的学生删掉</p>
+<p> WHERE <code>student_id</code> &#x3D; 4;</p>
+<p> SELECT * FROM <code>student</code>;</p>
+<p> DELETE FROM <code>student</code> #可以用and选多个条件</p>
+<p> WHERE <code>name</code> &#x3D; ‘小红’ AND <code>major</code> &#x3D; ‘英语文学’;</p>
+<p> DELETE FROM <code>student</code> #根据成绩</p>
+<p> WHERE <code>score</code> &lt; 71;   #不等于，不写where就会把整个表格删掉</p>
+<p> ##取得资料 SELECT 、 LIMIT</p>
+<p> #SELECT</p>
+<p> SELECT <code>major</code>, <code>name</code> FROM <code>student</code>; #SELECT 后接要搜寻的内容，*表示所有</p>
+<p> SELECT * FROM <code>student</code>; </p>
+<p> #排序 ORDER BY 由低到高；ORDER BY 属性 DESC 由高到低；ORDER BY 属性1,属性2 先按属性1排，如果1一样，再按2排序</p>
+<p> SELECT * FROM <code>student</code></p>
+<p> ORDER BY <code>score</code>; </p>
+<p> SELECT * FROM <code>student</code></p>
+<p> ORDER BY <code>score</code> DESC; </p>
+<p> SELECT * FROM <code>student</code></p>
+<p> ORDER BY <code>score</code>, <code>student_id</code>; </p>
+<h3 id="LIMIT-n-限制回传的数量为n笔，就是前n行。"><a href="#LIMIT-n-限制回传的数量为n笔，就是前n行。" class="headerlink" title="LIMIT n 限制回传的数量为n笔，就是前n行。"></a>LIMIT n 限制回传的数量为n笔，就是前n行。</h3><p> SELECT * FROM <code>student</code></p>
+<p> ORDER BY <code>student_id</code></p>
+<p> LIMIT 2; </p>
+<p> SELECT * FROM <code>student</code></p>
+<p> ORDER BY <code>student_id</code></p>
+<p> LIMIT 2; </p>
+<p> #用WHERE进行限制</p>
+<p> SELECT * FROM <code>student</code></p>
+<p> WHERE <code>major</code>&#x3D; ‘英语’ AND <code>score</code> &lt;&gt; 71;</p>
+<p> SELECT * FROM <code>student</code></p>
+<p> WHERE <code>major</code> IN(‘英语’ , ‘历史’ , ‘数学’);#等价于下面用or联接</p>
+<p> SELECT * FROM <code>student</code></p>
+<p> WHERE <code>major</code>&#x3D; ‘英语’ OR <code>major</code>&#x3D;’历史’ OR <code>major</code>&#x3D;’数学’;</p>
+<h3 id="SELECT、where、order任意搭配使用。"><a href="#SELECT、where、order任意搭配使用。" class="headerlink" title="SELECT、where、order任意搭配使用。"></a>SELECT、where、order任意搭配使用。</h3><p>2.多表格操作：</p>
+<p>– 创建公司资料表格</p>
+<p> CREATE DATABASE <code>sql_tutorial</code>;</p>
+<p> SHOW DATABASES;</p>
+<p> USE <code>sql_tutorial</code>;</p>
+<p>DROP TABLE <code>student</code>;</p>
+<p> SET SQL_SAFE_UPDATES &#x3D; 0; #关闭预设自动更新</p>
+<p> #创建表格</p>
+<p>CREATE TABLE <code>employee</code>(</p>
+<p> <code>emp_id</code> INT PRIMARY KEY,</p>
+<p> <code>name</code> VARCHAR(20),</p>
+<p> <code>brith_date</code> DATE,</p>
+<p> <code>sex</code> VARCHAR(1),</p>
+<p> <code>salary</code> INT,</p>
+<p> <code>branch_id</code> INT,</p>
+<p> <code>sup_id</code> INT</p>
+<p>);</p>
+<p>DROP TABLE <code>employee</code>;</p>
+<p>describe TABLE employee;</p>
+<p> #创建部门表格</p>
+<p> CREATE TABLE <code>branch</code>(</p>
+<p> <code>branch_id</code> INT PRIMARY KEY,</p>
+<p> <code>branch_name</code> VARCHAR(20),</p>
+<p> <code>manager_id</code> INT,</p>
+<p> FOREIGN KEY (<code>manager_id</code>) REFERENCES <code>employee</code>(<code>emp_id</code>) ON DELETE SET NULL   #FOREIGN KEY表示外键；REFERENCES 表示外键接的表格名，再加外接的表格的primary key</p>
+<p> );</p>
+<p> #对公司表格补上外键foreign key，</p>
+<p> ALTER TABLE <code>employee</code> </p>
+<p> ADD FOREIGN KEY(<code>branch_id</code>) #加外键 branch_id属性</p>
+<p> REFERENCES <code>branch</code>(<code>branch_id</code>) #对应到branch表格的branch_id的属性</p>
+<p> ON DELETE SET NULL;</p>
+<p> ALTER TABLE <code>employee</code></p>
+<p> ADD FOREIGN KEY(<code>sup_id</code>) #加外键sup_id</p>
+<p> REFERENCES <code>employee</code>(<code>emp_id</code>) #对应到branch表格的branch_id的属性</p>
+<p> ON DELETE SET NULL; </p>
+<p> #创建客户表格</p>
+<p>CREATE TABLE <code>client</code>(</p>
+<p> <code>client_id</code> INT PRIMARY KEY,</p>
+<p> <code>client_name</code> VARCHAR(20),</p>
+<p> <code>phone</code> VARCHAR(20)</p>
+<p> );</p>
+<p>#创建worh_with表格</p>
+<p> CREATE TABLE <code>work_with</code>(</p>
+<p> <code>emp_id</code> INT,</p>
+<p> <code>client_id</code> INT,</p>
+<p> <code>total_sales</code> INT,</p>
+<p> PRIMARY KEY ( <code>emp_id</code>, <code>client_id</code>),</p>
+<p> FOREIGN KEY (<code>emp_id</code>) REFERENCES <code>employee</code>(<code>emp_id</code>) ON DELETE CASCADE,</p>
+<p> FOREIGN KEY (<code>client_id</code>) REFERENCES <code>client</code>(<code>client_id</code>) ON DELETE CASCADE  </p>
+<p> );</p>
+<p> #填写表格数据</p>
+<p> #有foreign key时，对应的表没有相应资料时，直接输入会报错，要用NULL代替</p>
+<p> INSERT INTO <code>branch</code> VALUES(1,’研发’,NULL);</p>
+<p> INSERT INTO <code>branch</code> VALUES(2,’行政’,NULL);</p>
+<p> INSERT INTO <code>branch</code> VALUES(3,’查询’,NULL);</p>
+<p> INSERT INTO <code>branch</code> VALUES(4,’查询’,NULL);</p>
+<p> INSERT INTO <code>employee</code> VALUES(206,’小黄’,’1998-10-08’,’F’,50000,1,NULL);</p>
+<p> INSERT INTO <code>employee</code> VALUES(207,’小绿’,’1995-10-09’,’M’,51000,2,206);</p>
+<p> INSERT INTO <code>employee</code> VALUES(208,’小灰’,’1993-11-24’,’M’,23000,3,207);</p>
+<p> INSERT INTO <code>employee</code> VALUES(209,’小黑’,’1996-10-08’,’M’,36000,3,208);</p>
+<p> INSERT INTO <code>employee</code> VALUES(210,’小红’,’1997-07-05’,’F’,50000,1,209);</p>
+<p>  #修改</p>
+<p> UPDATE <code>employee</code>  </p>
+<p> SET <code>branch_id</code> &#x3D; ‘3’</p>
+<p> WHERE <code>emp_id</code> &#x3D; 209;</p>
+<p> select * from <code>employee</code>;</p>
+<p> desc <code>employee</code>;</p>
+<p> DROP TABLE <code>employee</code>; </p>
+<p> #把原本branch的manager_id&#x3D;NULL改回来</p>
+<p> UPDATE <code>branch</code></p>
+<p> SET <code>manager_id</code>&#x3D;206</p>
+<p> where <code>branch_id</code>&#x3D;1;</p>
+<p> UPDATE <code>branch</code></p>
+<p> SET <code>manager_id</code>&#x3D;207</p>
+<p> where <code>branch_id</code>&#x3D;2;</p>
+<p> UPDATE <code>branch</code></p>
+<p> SET <code>manager_id</code>&#x3D;208</p>
+<p> where <code>branch_id</code>&#x3D;3;</p>
+<p> INSERT INTO <code>client</code> VALUES(400,’阿狗’,’1234567’);</p>
+<p> INSERT INTO <code>client</code> VALUES(401,’阿猫’,’1673692’);</p>
+<p> INSERT INTO <code>client</code> VALUES(402,’来福’,’1894738’);</p>
+<p> INSERT INTO <code>client</code> VALUES(403,’路西’,’1746952’);</p>
+<p> INSERT INTO <code>client</code> VALUES(405,’杰克’,’9947538’); </p>
+<p> INSERT INTO <code>work_with</code> VALUES(206,400,70000);</p>
+<p> INSERT INTO <code>work_with</code> VALUES(207,400,’56000’);</p>
+<p> INSERT INTO <code>work_with</code> VALUES(208,402,’35000’);</p>
+<p> INSERT INTO <code>work_with</code> VALUES(209,403,’54000’);</p>
+<p> INSERT INTO <code>work_with</code> VALUES(210,404,’64000’);</p>
+<p> DROP TABLE <code>worh_with</code>; </p>
+<p> desc work_with;</p>
+<p> select * from <code>work_with</code>;</p>
+<p>##聚合函数 aggregate functions</p>
+<p>#取得员工数目</p>
+<p>select count(*) from <code>employee</code>; #表格里有基笔资料</p>
+<p>select count(sup_id) from <code>employee</code>; #count()里对应的属性的资料有几笔</p>
+<p>#取得所有出生在1996-10-01之后出生的女性员工</p>
+<p>select count(*) from <code>employee</code></p>
+<p>where <code>brith_date</code> &gt; ‘1996-10-01’ and <code>sex</code>&#x3D;’F’; </p>
+<p>#取得所有员工的平均薪水</p>
+<p>select avg(<code>salary</code>) from <code>employee</code>;</p>
+<p>#取得所有员工的总和薪水 sum</p>
+<p>select sum(<code>salary</code>) from <code>employee</code>;</p>
+<p>#取得最高&#x2F;低员工的薪水 max,min</p>
+<p>select max(<code>salary</code>) from <code>employee</code>;</p>
+<p>##wildcards 万用字元 %表示多个字元，_表示一个字元，可以用一个，也可以前后都用</p>
+<p>#取得电话号码尾数是567的客户</p>
+<p>select * from <code>client</code></p>
+<p>where <code>phone</code> like ‘%567’;</p>
+<p>#取得电话号码开头是189的客户</p>
+<p>select * from <code>client</code></p>
+<p>where <code>phone</code> like ‘189%’;</p>
+<p>#取得姓阿的员工</p>
+<p>select * from <code>client</code></p>
+<p>where <code>client_name</code> like ‘阿%’;</p>
+<p>#取得生日在10月的员工</p>
+<p>select * from <code>employee</code></p>
+<p>where <code>brith_date</code> like ‘_____10%’;</p>
+<p>select * from <code>employee</code>;</p>
+<p>##union 连集 可以合并搜寻的结果，合并的属性资料形态要一样，不同表格的属性数目要一样，不能用表格1的2个属性去和表格2的1个属性合并</p>
+<p>#员工名字和客户名和部门名字字合并</p>
+<p>select (<code>name</code>) from <code>employee</code></p>
+<p>union</p>
+<p>select (<code>client_name</code>) from <code>client</code></p>
+<p>union</p>
+<p>select (<code>branch_name</code>) from <code>branch</code>;</p>
+<p>select <code>name</code>,<code>emp_id</code> from <code>employee</code></p>
+<p>union</p>
+<p>select <code>client_name</code>,<code>client_id</code> from <code>client</code>;</p>
+<p>select <code>name</code> as <code>total_name</code>,<code>emp_id</code> as <code>total_id</code>  #改变回传的属性名称</p>
+<p>from <code>employee</code></p>
+<p>union</p>
+<p>select <code>client_name</code>,<code>client_id</code> from <code>client</code>;</p>
+<p>##join 连接</p>
+<p>insert into <code>branch</code> values(4,’瑜伽’,NULL);</p>
+<p>#取得所有部门经理的名字，把employee和branch两个表格连接起来，条件是连个id一样。</p>
+<p>select * from employee   </p>
+<p>#select <code>emp_id</code>, <code>name</code>, <code>branch_name</code> from <code>employee</code> </p>
+<p>join <code>branch</code></p>
+<p>on <code>emp_id</code> &#x3D; <code>manager_id</code>;</p>
+<p>#如果不同表格有相同属性，用表格.属性名称进行区分，说明表格属性来源</p>
+<p>select <code>employee</code>.<code>emp_id</code>, <code>employee</code>.<code>name</code>, <code>branch</code>.<code>branch_name</code> from <code>employee</code> </p>
+<p>join <code>branch</code></p>
+<p>on <code>employee</code>.<code>emp_id</code> &#x3D; <code>branch</code>.<code>manager_id</code>;</p>
+<p>#把左&#x2F;右边的表格都回传，右&#x2F;左边边表格符合条件才回传,否则回传NULL, left join&#x2F;right join</p>
+<p>select * </p>
+<p>#from <code>employee</code> left join <code>branch</code></p>
+<p>from <code>employee</code> right join <code>branch</code></p>
+<p>on <code>emp_id</code> &#x3D; <code>manager_id</code>;</p>
+<p>select * from <code>branch</code>;</p>
+<p>delete from <code>branch</code> where <code>branch_id</code> &#x3D; 4;</p>
+<p>##subquery 子查询，在一个查询语句里面查询另外一个结果，就是在一个查询语句里面插入另外一个查询结果</p>
+<p>#找出研发部门的经理名字：先找研发部门的manager_id(放在括号里面的，就是子查询的部分），再用id进行查找名字</p>
+<p>select <code>name</code> from <code>employee</code></p>
+<p>where <code>emp_id</code> &#x3D; (</p>
+<pre><code>select `manager_id` from `branch`
+</code></pre>
+<p>  where <code>branch_name</code> &#x3D; ‘研发’</p>
+<p>);</p>
+<p>#找出一位客户销售金额超过50000的员工名字:当子查询回传结果不止一个，要用in不用&#x3D;</p>
+<p>select <code>name</code> from <code>employee</code></p>
+<p>where <code>emp_id</code>in (</p>
+<pre><code>select `emp_id` from `work_with`
+</code></pre>
+<p>  where <code>total_sales</code> &gt; 50000</p>
+<p>  );</p>
+<h2 id="on-delete-删除某一行"><a href="#on-delete-删除某一行" class="headerlink" title="on delete 删除某一行"></a>on delete 删除某一行</h2><h3 id="on-delete-set-NULL：如果删掉某个资料1，其他表格的资料2用外键对应的该资料1，在其他表格中把资料2设为null-当资料2为primary-key时，不能设置为null，只能为on-delete-cascade"><a href="#on-delete-set-NULL：如果删掉某个资料1，其他表格的资料2用外键对应的该资料1，在其他表格中把资料2设为null-当资料2为primary-key时，不能设置为null，只能为on-delete-cascade" class="headerlink" title="on delete set NULL：如果删掉某个资料1，其他表格的资料2用外键对应的该资料1，在其他表格中把资料2设为null,当资料2为primary key时，不能设置为null，只能为on delete cascade"></a>on delete set NULL：如果删掉某个资料1，其他表格的资料2用外键对应的该资料1，在其他表格中把资料2设为null,当资料2为primary key时，不能设置为null，只能为on delete cascade</h3><p>#on delete cascade：如果删掉某个资料1，其他表格的资料2用外键对应的该资料1，在其他表格中把资料2也删掉</p>
+<p>#创建worh_with表格</p>
+<p> CREATE TABLE <code>work_with</code>(</p>
+<p> <code>emp_id</code> INT,</p>
+<p> <code>client_id</code> INT,</p>
+<p> <code>total_sales</code> INT,</p>
+<p> PRIMARY KEY ( <code>emp_id</code>, <code>client_id</code>),</p>
+<p> FOREIGN KEY (<code>emp_id</code>) REFERENCES <code>employee</code>(<code>emp_id</code>) ON DELETE CASCADE,</p>
+<p> FOREIGN KEY (<code>client_id</code>) REFERENCES <code>client</code>(<code>client_id</code>) ON DELETE CASCADE  </p>
+<p> );</p>
+<p> #创建部门表格</p>
+<p> CREATE TABLE <code>branch</code>(</p>
+<p> <code>branch_id</code> INT PRIMARY KEY,</p>
+<p> <code>branch_name</code> VARCHAR(20),</p>
+<p> <code>manager_id</code> INT,</p>
+<p> FOREIGN KEY (<code>manager_id</code>) REFERENCES <code>employee</code>(<code>emp_id</code>) ON DELETE SET NULL   #FOREIGN KEY表示外键；REFERENCES 表示外键接的表格名，再加外接的表格的primary key</p>
+<p> );</p>
+<p> delete from <code>employee</code></p>
+<p> where <code>emp_id</code>&#x3D; 207;</p>
+<p>select * from <code>work_with</code>;</p>
+<p>select * from <code>branch</code>;</p>
+<p>update <code>branch</code></p>
+<p>set <code>manager_id</code>&#x3D;207</p>
+<p>where <code>branch_id</code>&#x3D;2; </p>
+<p>INSERT INTO <code>employee</code> VALUES(207,’小绿’,’1995-10-09’,’M’,51000,2,206);</p>
+<p>INSERT INTO <code>work_with</code> VALUES(207,400,’56000’);</p>
 
                 
             </div>
@@ -468,7 +731,7 @@ C语言结束后着手学习python
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://winter7374.github.io/2023/11/05/%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%92/">http://winter7374.github.io/2023/11/05/%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%92/</a>
+                    <a href="http://winter7374.github.io/2023/12/24/MySQL%E7%AC%94%E8%AE%B0/">http://winter7374.github.io/2023/12/24/MySQL%E7%AC%94%E8%AE%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -582,9 +845,48 @@ C语言结束后着手学习python
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/12/24/MySQL%E7%AC%94%E8%AE%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            杨俊波
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2023/12/24/linux/">
                     <div class="card-image">
@@ -602,45 +904,8 @@ C语言结束后着手学习python
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-12-24
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            杨俊波
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/10/23/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-24
                             </span>
                         <span class="publish-author">
                             
